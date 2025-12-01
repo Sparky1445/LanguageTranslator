@@ -3,19 +3,23 @@ import TranslateDispatchContext from "../Contexts/TranslateDispatchContext.js"
 import TranslatorContext from "../Contexts/TranslatorContext.js"
 import run from "../Helpers/Fetcher.js"
 import React from "react"
+import LanguageFromDropdown from "./LanguageFromDropdown.jsx"
+import LanguageToDropdown from "./LanguageToDropdown.jsx"
 function Translator() {
 
     const { dispatch } = useContext(TranslateDispatchContext);
     const { list } = useContext(TranslatorContext);
     const [Edittext, setEditText] = useState("");
     const [translation, setTranslation] = useState("");
+    const [fromLang, setFromLang] = useState("en");
+    const [toLang, setToLang] = useState("en");
 
 
 
     async function TranslateNow() {
-        const output = await run(Edittext, "en", "es");
+        const output = await run(Edittext, fromLang, toLang);
         if (Edittext != "") {
-            await dispatch({ type: "translate", payload: { text: Edittext, translation: output } });
+            dispatch({ type: "translate", payload: { text: Edittext, translation: output } });
         }
         else {
             alert("Please enter text to translate");
@@ -30,7 +34,7 @@ function Translator() {
     return (
         <div className="translator-container">
             <div className='toTranslateField'>
-
+                <LanguageFromDropdown setFromLang={setFromLang} />
                 <textarea
                     onChange={(e) => { setEditText(e.target.value) }}
                     id="fromLang"
@@ -43,6 +47,8 @@ function Translator() {
             </div>
 
             <div className='translatedField'>
+
+                <LanguageToDropdown setToLang={setToLang} />
                 <textarea
                     id="toLang"
                     placeholder="translated text here..."
