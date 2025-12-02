@@ -48,10 +48,16 @@
 }
 
 
-.translateButton {
+.translateAndSwitchButton {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     
+}
+
+#translate-btn{
+    margin: 10px;
+    border-radius: 5px;
+    background-color: black;
 }

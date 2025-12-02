@@ -29,7 +29,7 @@ function Translator() {
 
     return (
         <>
-            <ToastContainer />
+            <ToastContainer position="top-center" />
             <div className="translator-container">
                 <div className='toTranslateField'>
                     <LanguageFromDropdown setFromLang={setFromLang} />
@@ -40,11 +40,26 @@ function Translator() {
                         placeholder="Enter text to translate" />
                 </div>
 
-                <div className='translateButton'>
+                <div className='translateAndSwitchButton'>
 
-                    <button id="translate-btn" onClick={() => { TranslateNow(isBusy, setIsBusy, Edittext, fromLang, toLang, setTranslation, dispatch, run) }} >
+                    <button id="translate-btn" onClick={() => {
+                        if (Edittext.trim()) {
+                            toast.promise(TranslateNow(isBusy, setIsBusy, Edittext, fromLang, toLang, setTranslation, dispatch, run), {
+                                pending: "Translating...",
+                                success: "Translated!",
+                                error: "Error translating!",
+
+                            })
+                        }
+                        else { alert("Please enter text to translate") }
+
+                    }} >
                         Translate
                     </button >
+
+
+
+
                 </div>
 
                 <div className='translatedField'>

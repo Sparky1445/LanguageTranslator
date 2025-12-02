@@ -12,6 +12,7 @@ function App() {
 
   return (
     <>
+      <h1>TransLIT!</h1>
       <TranslatorContext.Provider value={{ list }}>
         <TranslateDispatchContext.Provider value={{ dispatch }}>
           <Translator />
