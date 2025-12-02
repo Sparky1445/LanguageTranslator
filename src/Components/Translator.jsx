@@ -5,6 +5,9 @@ import run from "../Helpers/Fetcher.js"
 import React from "react"
 import LanguageFromDropdown from "./LanguageFromDropdown.jsx"
 import LanguageToDropdown from "./LanguageToDropdown.jsx"
+import "../styles/styles.css"
+import { ToastContainer, toast } from 'react-toastify';
+
 function Translator() {
 
     const { dispatch } = useContext(TranslateDispatchContext);
@@ -27,37 +30,52 @@ function Translator() {
         setTranslation(output);
     }
 
+
+    async function copyToClipboard(text) {
+        await navigator.clipboard.writeText(text);
+        toast.success("Copied to clipboard!");
+
+    }
+
     useEffect(() => {
         console.log(list);
     }, [list]);
 
     return (
-        <div className="translator-container">
-            <div className='toTranslateField'>
-                <LanguageFromDropdown setFromLang={setFromLang} />
-                <textarea
-                    onChange={(e) => { setEditText(e.target.value) }}
-                    id="fromLang"
-                    placeholder="Enter text to translate" />
-            </div>
+        <>
+            <ToastContainer />
+            <div className="translator-container">
+                <div className='toTranslateField'>
+                    <LanguageFromDropdown setFromLang={setFromLang} />
+                    <textarea id="fromLang"
+                        onChange={(e) => { setEditText(e.target.value) }}
+                        cols="50"
+                        rows="10"
+                        placeholder="Enter text to translate" />
+                </div>
 
-            <div className='translateButton'>
+                <div className='translateButton'>
 
-                <button id="translate-btn" onClick={() => { TranslateNow(); }} >Translate </button >
-            </div>
+                    <button id="translate-btn" onClick={() => { TranslateNow(); }} >
+                        Translate
+                    </button >
+                </div>
 
-            <div className='translatedField'>
+                <div className='translatedField'>
 
-                <LanguageToDropdown setToLang={setToLang} />
-                <textarea
-                    id="toLang"
-                    placeholder="translated text here..."
-                    value={translation} />
+                    <LanguageToDropdown setToLang={setToLang} />
+                    <textarea id="toLang"
+                        cols="50"
+                        rows="10"
+                        placeholder="translated text here..."
+                        value={translation}
+                        onClick={() => copyToClipboard(translation)}
 
+                    />
 
-            </div>
-        </div >
-
+                </div>
+            </div >
+        </>
     )
 
 }

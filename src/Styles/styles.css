@@ -1,0 +1,53 @@
+.translator-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.translatedField ,.toTranslateField{
+    display: flex;
+    flex-direction: column;
+}
+
+#toLang{
+    border: 1px solid white;
+    padding: 10px;
+    margin: 10px;
+    width: 500px;
+    height: 200px;
+    border-radius: 10px;
+    transition-property: scale, background-color;
+    transition-duration: 0.5s;
+}
+
+#toLang:hover {
+    cursor: pointer;
+    scale:1.1;
+    background-color: rgb(240, 240, 240);
+}
+
+#fromLang {
+    border: 1px solid white;
+    padding: 10px;
+    margin: 10px;
+    width: 500px;
+    height: 200px;
+    border-radius: 10px;
+    transition-property: scale, background-color, color;
+    transition-duration: 0.5s;
+}
+
+#fromLang:hover {
+    color: black;
+    scale: 1.1;
+    background-color: rgb(240, 240, 240);
+}
+
+
+.translateButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
