@@ -2,7 +2,7 @@
 
 import React from "react"
 import languages from "./languages.json"
-import "../styles/LanguageDropdown.css"
+import "../Styles/LanguageDropdown.css"
 function LanguageToDropdown({ setToLang }) {
 
 
