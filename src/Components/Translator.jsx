@@ -1,12 +1,15 @@
 import { useContext, useState, useEffect } from 'react'
 import TranslateDispatchContext from "../Contexts/TranslateDispatchContext.js"
 import TranslatorContext from "../Contexts/TranslatorContext.js"
-import run from "../Helpers/Fetcher.js"
 import React from "react"
 import LanguageFromDropdown from "./LanguageFromDropdown.jsx"
 import LanguageToDropdown from "./LanguageToDropdown.jsx"
 import "../styles/styles.css"
+import run from "../Helpers/Fetcher.js";
 import { ToastContainer, toast } from 'react-toastify';
+import TranslateNow from "../Helpers/TranslateNow.js";
+import copyToClipboard from "../Helpers/copyToClipboard.js";
+
 
 function Translator() {
 
@@ -16,26 +19,9 @@ function Translator() {
     const [translation, setTranslation] = useState("");
     const [fromLang, setFromLang] = useState("en");
     const [toLang, setToLang] = useState("en");
+    const [isBusy, setIsBusy] = useState(false);
 
 
-
-    async function TranslateNow() {
-        const output = await run(Edittext, fromLang, toLang);
-        if (Edittext != "") {
-            dispatch({ type: "translate", payload: { text: Edittext, translation: output } });
-        }
-        else {
-            alert("Please enter text to translate");
-        }
-        setTranslation(output);
-    }
-
-
-    async function copyToClipboard(text) {
-        await navigator.clipboard.writeText(text);
-        toast.success("Copied to clipboard!");
-
-    }
 
     useEffect(() => {
         console.log(list);
@@ -56,7 +42,7 @@ function Translator() {
 
                 <div className='translateButton'>
 
-                    <button id="translate-btn" onClick={() => { TranslateNow(); }} >
+                    <button id="translate-btn" onClick={() => { TranslateNow(isBusy, setIsBusy, Edittext, fromLang, toLang, setTranslation, dispatch, run) }} >
                         Translate
                     </button >
                 </div>
@@ -69,7 +55,7 @@ function Translator() {
                         rows="10"
                         placeholder="translated text here..."
                         value={translation}
-                        onClick={() => copyToClipboard(translation)}
+                        onClick={() => copyToClipboard(translation, toast)}
 
                     />
 

@@ -18,10 +18,13 @@
     border-radius: 10px;
     transition-property: scale, background-color;
     transition-duration: 0.5s;
+    font-size:20px ;
+
 }
 
 #toLang:hover {
     cursor: pointer;
+    color: black;
     scale:1.1;
     background-color: rgb(240, 240, 240);
 }
@@ -35,6 +38,7 @@
     border-radius: 10px;
     transition-property: scale, background-color, color;
     transition-duration: 0.5s;
+    font-size: 20px;
 }
 
 #fromLang:hover {
