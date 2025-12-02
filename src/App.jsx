@@ -2,7 +2,7 @@ import './App.css'
 
 import Translator from "./Components/Translator.jsx"
 import { useReducer } from "react"
-import TranslationReducer from "./reducers/TranslationReducer.js"
+import TranslationReducer from "./Reducers/TranslationReducer.js"
 import TranslatorContext from "./Contexts/TranslatorContext.js"
 import TranslateDispatchContext from "./Contexts/TranslateDispatchContext.js"
 function App() {
