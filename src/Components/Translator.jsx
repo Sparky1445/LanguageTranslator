@@ -4,7 +4,7 @@ import TranslatorContext from "../Contexts/TranslatorContext.js"
 import React from "react"
 import LanguageFromDropdown from "./LanguageFromDropdown.jsx"
 import LanguageToDropdown from "./LanguageToDropdown.jsx"
-import "../styles/styles.css"
+import "../Styles/styles.css"
 import run from "../Helpers/Fetcher.js";
 import { ToastContainer, toast } from 'react-toastify';
 import TranslateNow from "../Helpers/TranslateNow.js";
